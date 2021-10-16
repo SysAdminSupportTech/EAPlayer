@@ -19,6 +19,7 @@ What new Start-Radio Script will do
 
 
 When Creating a default Folder 
+Note: User Needs to copy file to "C:\program files" and run from that location
 1. Set a default folder (Music folder)
 2. Ask the user if he has another folder in mind by default
 3. If yes --> Work with user selected path and keep a record on a file to always set the user powershell scope to that path
@@ -29,4 +30,3 @@ Start-Configuration prompt Questions
 1. Ask for user option (Green)
 
 
-- Copy files to C:\program file to configure user enviroment
