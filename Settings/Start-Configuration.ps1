@@ -11,9 +11,9 @@ Function Start-Configuration{
         'Y'{
             $UsrMusicPath = Read-Host "Enter Music Path"
             if(Test-Path -Path $UsrMusicPath){
-                New-Item -Path $UsrMusicPath\MusicPath.txt -Force -ItemType File
-                $usrMusicPath | Out-File $UsrMusicPath\MusicPath.txt
-                $SetMusicPath = Get-Content -Path $UsrMusicPath\MusicPath.txt
+                New-Item -Path 'C:\Program Files\EAPlayer\Files\MusicPath.txt' -Force -ItemType File
+                $usrMusicPath | Out-File 'C:\Program Files\EAPlayer\Files\MusicPath.txt'
+                $SetMusicPath = Get-Content -Path 'C:\Program Files\EAPlayer\Files\MusicPath.txt'
                 Push-location $SetMusicPath
             }Else{
                 Write-Host "An Error Just occured. Music Path Does Not Exist" -ForegroundColor Red
@@ -22,11 +22,11 @@ Function Start-Configuration{
         'N'{
             New-Item -Path $usrhome\music\EAPlayer -ItemType Directory -Force
             if(Test-Path -Path "$usrhome\music\EAPlayer"){
-                New-Item -Path $usrhome\music\EAPlayer\MusicPath.txt -ItemType File -Force
+                New-Item -Path 'C:\Program Files\EAPlayer\Files\MusicPath.txt' -ItemType File -Force
                 Push-Location $usrhome\music\EAPlayer
                 $GetUsrMusicPath = Get-Location
                 Write-Host "Your Music Path is $GetUsrMusicPath" -ForegroundColor Green
-                $GetUsrMusicPath.Path | Out-File $usrhome\music\EAPlayer\MusicPath.txt -Force
+                $GetUsrMusicPath.Path | Out-File 'C:\Program Files\EAPlayer\Files\MusicPath.txt' -Force
             }Else{
                 Write-Host "An Error Just occured. Music Path Does Not Exist" -ForegroundColor Red
             }
@@ -46,10 +46,11 @@ Function Start-Configuration{
     Write-Output "$userChoice"
 
     #Get the Current Path of the user and create folders
-    $MusicPathDir = Get-Content .\MusicPath.txt
+    $MusicPathDir = Get-Content 'C:\Program Files\EAPlayer\Files\MusicPath.txt'
     New-Item -Path "$MusicPathDir\$userChoice" -ItemType Directory -Force #Creating parent directory
     New-Item -Path "$MusicPathDir\$userChoice\PlayList" -ItemType Directory -Force
     New-Item -Path "$MusicPathDir\$userChoice\PlayList\Special" -ItemType Directory -Force
     New-Item -Path "$MusicPathDir\$userChoice\PlayList\Regular" -ItemType Directory -Force
 }
 Start-Configuration
+Pop-Location
